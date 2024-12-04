@@ -35,15 +35,26 @@ class Character
         void set_level(int new_level);
 
         /**
-         * Getter function for a Character's health
-         * @return the health
+         * Getter function for a Character's maximum health
+         * @return the max health
          */
-        int get_health();
+        int get_max_health();
 
         /**
-         * Setter function for a Character's health
+         * Setter function for a Character's maximum health
          */
-        void set_health(int new_health);
+        void set_max_health(int new_health);
+
+        /**
+         * Getter function for a Character's current health
+         * @return the current health
+         */
+        int get_curr_health();
+
+        /**
+         * Setter function for a Character's current health
+         */
+        void set_curr_health(int new_health);
 
         /**
          * Getter function for a Character's attack points
@@ -57,15 +68,26 @@ class Character
         void set_attack(int new_attack);
 
         /**
-         * Getter function for a Character's xp
-         * @return the xp
+         * Getter function for a Character's maximum xp
+         * @return the max xp
          */
-        int get_xp();
+        int get_max_xp();
 
         /**
-         * Setter function for a Character's xp
+         * Setter function for a Character's maximum xp
          */
-        void set_xp(int new_xp);
+        void set_max_xp(int new_xp);
+
+        /**
+         * Getter function for a Character's current xp
+         * @return the current xp
+         */
+        int get_curr_xp();
+
+        /**
+         * Setter function for a Character's current xp
+         */
+        void set_curr_xp(int new_xp);
 
         /**
          * Getter function for Character's inventory
@@ -87,9 +109,11 @@ class Character
     private:
         string name;
         int level;
-        int health;
+        int max_health;
+        int curr_health;
         int attack;
-        int xp;
+        int max_xp;
+        int curr_xp;
         vector<Item> inventory;
 };
 

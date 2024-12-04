@@ -22,10 +22,16 @@ class Monster
         string get_type();
 
         /**
-         * Getter function for a Monster's health
-         * @return the health
+         * Getter function for a Monster's maximum health
+         * @return the max health
          */
-        int get_health();
+        int get_max_health();
+
+        /**
+         * Getter function for a Monster's current health
+         * @return the current health
+         */
+        int get_curr_health();
 
         /**
          * Getter function for a Monster's attack points
@@ -51,6 +57,7 @@ class Monster
         void fight();
     private:
         string type;
+        int max_health;
         int health;
         int attack;
         int xp_reward;

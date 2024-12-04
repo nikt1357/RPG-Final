@@ -8,9 +8,11 @@ Character::Character(string char_name)
 {
     name = char_name;
     level = 1;
-    health = 15;
+    max_health = 15;
+    curr_health = 15;
     attack = 5;
-    xp = 0;
+    max_xp = 20;
+    curr_xp = 0;
 }
 
 string Character::get_name()
@@ -28,14 +30,24 @@ void Character::set_level(int new_level)
     level = new_level;
 }
 
-int Character::get_health()
+int Character::get_max_health()
 {
-    return health;
+    return max_health;
 }
 
-void Character::set_health(int new_health)
+void Character::set_max_health(int new_health)
 {
-    health = new_health;
+    max_health = new_health;
+}
+
+int Character::get_curr_health()
+{
+    return curr_health;
+}
+
+void Character::set_curr_health(int new_health)
+{
+    curr_health = new_health;
 }
 
 int Character::get_attack()
@@ -48,14 +60,24 @@ void Character::set_attack(int new_attack)
     attack = new_attack;
 }
 
-int Character::get_xp()
+int Character::get_max_xp()
 {
-    return xp;
+    return max_xp;
 }
 
-void Character::set_xp(int new_xp)
+void Character::set_max_xp(int new_xp)
 {
-    xp = new_xp;
+    max_xp = new_xp;
+}
+
+int Character::get_curr_xp()
+{
+    return curr_xp;
+}
+
+void Character::set_curr_xp(int new_xp)
+{
+    curr_xp = new_xp;
 }
 
 vector<Item> Character::get_inventory()
