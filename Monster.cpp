@@ -17,9 +17,14 @@ string Monster::get_type()
     return type;
 }
 
-int Monster::get_health()
+int Monster::get_max_health()
 {
-    return health;
+    return max_health;
+}
+
+int Monster::get_curr_health()
+{
+    return curr_health;
 }
 
 int Monster::get_attack()

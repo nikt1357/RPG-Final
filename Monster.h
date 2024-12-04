@@ -58,7 +58,7 @@ class Monster
     private:
         string type;
         int max_health;
-        int health;
+        int curr_health;
         int attack;
         int xp_reward;
         vector<string> rewards_possible;

@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Character.cpp" />
+    <ClCompile Include="..\Dungeon.cpp" />
+    <ClCompile Include="..\Game.cpp" />
+    <ClCompile Include="..\Item.cpp" />
+    <ClCompile Include="..\Monster.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Character.h" />
+    <ClInclude Include="..\Dungeon.h" />
+    <ClInclude Include="..\Item.h" />
+    <ClInclude Include="..\Monster.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
