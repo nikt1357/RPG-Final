@@ -7,13 +7,12 @@ using namespace std;
 
 Dungeon::Dungeon()
 {
-    /* TO DO */
+    rooms = generate_num_rooms();
 }
 
 int Dungeon::get_rooms()
 {
-    /*return rooms; */
-    return 1;
+    return rooms;
 }
 
 vector<Monster> Dungeon::get_possible_monsters() 
@@ -43,4 +42,10 @@ Item Dungeon::generate_item(vector<Item> items)
     /* TO DO*/
     return Item("Item");
 
+}
+
+int Dungeon::generate_num_rooms()
+{
+    rooms = 1 + (rand() % 5);
+    return rooms;
 }

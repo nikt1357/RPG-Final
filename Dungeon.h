@@ -45,6 +45,12 @@ class Dungeon
          * @return a random Item
          */
         Item generate_item(vector<Item> items);
+
+        /*
+        * Function that generates a random number of rooms for a Dungeon
+        * @return a random int
+        */
+        int generate_num_rooms();
     private:
         int rooms;
         vector<Monster> possible_monsters;

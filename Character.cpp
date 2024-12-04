@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Item.h"
 #include "Character.h"
 using namespace std;
@@ -13,6 +14,7 @@ Character::Character(string char_name)
     attack = 5;
     max_xp = 20;
     curr_xp = 0;
+    gold = 0;
 }
 
 string Character::get_name()
@@ -102,4 +104,23 @@ void Character::fight()
     /* TO DO */
 
     
+}
+
+void Character::display_stats()
+{
+    cout << "\nName: " << get_name() << endl;
+    cout << "Level: " << get_level() << endl;
+    cout << "Health: " << get_curr_health() << "/" << get_max_health() << endl;
+    cout << "Attack Power: " << get_attack() << endl;
+    cout << "Experience Points: " << get_curr_xp() << "/" << get_max_xp() << endl;
+}
+
+int Character::get_gold()
+{
+    return gold;
+}
+
+void Character::set_gold(int new_gold)
+{
+    gold = new_gold;
 }

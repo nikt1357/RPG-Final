@@ -106,6 +106,22 @@ class Character
          * Function that handles fighting an enemy
          */
         void fight();
+
+        /**
+        * Function that prints out a characters stats
+        */
+        void display_stats();
+
+        /**
+         * Getter function for a Character's current gold
+         * @return the gold
+         */
+        int get_gold();
+
+        /**
+         * Setter function for a Character's gold
+         */
+        void set_gold(int new_gold);
     private:
         string name;
         int level;
@@ -115,6 +131,7 @@ class Character
         int max_xp;
         int curr_xp;
         vector<Item> inventory;
+        int gold;
 };
 
 #endif
