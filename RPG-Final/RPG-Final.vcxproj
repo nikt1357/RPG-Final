@@ -126,19 +126,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\NewProject\Character.cpp" />
-    <ClCompile Include="..\..\NewProject\Dungeon.cpp" />
-    <ClCompile Include="..\..\NewProject\Game.cpp" />
-    <ClCompile Include="..\..\NewProject\Item.cpp" />
-    <ClCompile Include="..\..\NewProject\Monster.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\NewProject\Character.h" />
-    <ClInclude Include="..\..\NewProject\Dungeon.h" />
-    <ClInclude Include="..\..\NewProject\Item.h" />
-    <ClInclude Include="..\..\NewProject\Monster.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
