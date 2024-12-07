@@ -14,7 +14,7 @@ class Item
         /**
          * Constructs an Item with stats for a given type (Weapon, Comsumable, etc.)
          */
-        Item(string type);
+        Item(string name, string type, int cost);
 
         /**
          * Getter function for an Item's name

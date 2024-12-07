@@ -3,13 +3,11 @@
 #include "Item.h"
 using namespace std;
 
-Item::Item(string type)
+Item::Item(string item_name, string item_type, int item_cost)
 {
-
-
-    /* TO DO */
-
-
+    name = item_name;
+    type = item_type;
+    cost = item_cost;
 }
 
 string Item::get_name()

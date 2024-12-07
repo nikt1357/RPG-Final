@@ -113,6 +113,11 @@ class Character
         void display_stats();
 
         /**
+        * Function that prints out a characters inventory
+        */
+        void display_inventory();
+
+        /**
          * Getter function for a Character's current gold
          * @return the gold
          */

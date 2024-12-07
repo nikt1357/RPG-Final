@@ -40,7 +40,7 @@ Item Dungeon::generate_item(vector<Item> items)
 
 
     /* TO DO*/
-    return Item("Item");
+    return Item("Iron Sword", "Weapon", 10);
 
 }
 
