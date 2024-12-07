@@ -103,6 +103,11 @@ class Character
         int add_to_inventory(Item item);
 
         /**
+         * Function that removes an Item from a Character's inventory given the index of the Item
+         */
+        void remove_from_inventory(int index);
+
+        /**
          * Function that handles fighting an enemy
          */
         void fight();

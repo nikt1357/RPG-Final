@@ -16,7 +16,7 @@ Character::Character(string char_name)
     curr_xp = 0;
     gold = 0;
     /* inventory = vector<Item>(5); */
-    inventory.push_back(Item("Sword", "Weapon", 10));
+    inventory.push_back(Item("Scrap Metal", "Weapon Upgrade", 10));
 }
 
 string Character::get_name()
@@ -99,6 +99,11 @@ int Character::add_to_inventory(Item item)
     return 0;
 }
 
+void Character::remove_from_inventory(int index)
+{
+    inventory.erase(inventory.begin() + index);
+}
+
 void Character::fight() 
 {
 
@@ -115,6 +120,7 @@ void Character::display_stats()
     cout << "Health: " << get_curr_health() << "/" << get_max_health() << endl;
     cout << "Attack Power: " << get_attack() << endl;
     cout << "Experience Points: " << get_curr_xp() << "/" << get_max_xp() << endl;
+    cout << "Current Gold: " << get_gold() << endl;
 }
 
 void Character::display_inventory()
@@ -122,7 +128,7 @@ void Character::display_inventory()
     for (Item i : inventory)
     {
 
-        cout << i.get_name() << " (" << i.get_type() << ")" << endl;
+        cout << i.get_name() << endl;
     }
 }
 
