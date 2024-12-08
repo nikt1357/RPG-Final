@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "Item.h"
+class Monster;
 using namespace std;
 
 /**
@@ -110,15 +111,15 @@ class Character
         /**
          * Function that handles fighting an enemy
          */
-        void fight();
+        void combat_turn(Monster monster);
 
         /**
-        * Function that prints out a characters stats
+        * Function that prints out a Character's stats
         */
         void display_stats();
 
         /**
-        * Function that prints out a characters inventory
+        * Function that prints out a Character's inventory
         */
         void display_inventory();
 
@@ -176,6 +177,16 @@ class Character
          * Setter function for the number of Dungeons a Character has explored
          */
         void set_dungeons_explored(int new_dungeons);
+
+        /**
+        * Function that prints out a Character's final stats
+        */
+        void display_final_stats();
+
+        /**
+        * Function that handles using an Item
+        */
+        void use_item(Item item, int index);
     private:
         string name;
         int level;

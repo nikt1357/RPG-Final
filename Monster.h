@@ -2,6 +2,8 @@
 #define MONSTER_H
 
 #include <string>
+#include "Character.h"
+class Character;
 using namespace std;
 
 /**
@@ -48,7 +50,7 @@ class Monster
         /**
          * Function that handles fighting the character
          */
-        void fight();
+        void combat_turn(Character player);
     private:
         int max_health;
         int curr_health;

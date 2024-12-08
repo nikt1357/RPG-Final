@@ -35,6 +35,6 @@ Item Dungeon::generate_treasure()
 
 int Dungeon::generate_num_rooms()
 {
-    rooms = 1 + (rand() % 5);
+    rooms = 1 + (rand() % 6);
     return rooms;
 }

@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "Character.h"
 #include "Monster.h"
 using namespace std;
@@ -43,11 +44,10 @@ int Monster::get_gold_reward()
     return gold_reward;
 }
 
-void Monster::fight()
+void Monster::combat_turn(Character player)
 {
-
-
-    /* TO DO */
-
-
+    cout << "\n" << player.get_name() << "'s health: " << player.get_curr_health() << "/" << player.get_max_health()
+        << "\nMonster's health: " << get_curr_health() << "/" << get_max_health() << endl;
+    player.set_curr_health(player.get_curr_health() - get_attack());
+    cout << "\nThe Monster attacks you for " << get_attack() << " damage!" << endl;
 }

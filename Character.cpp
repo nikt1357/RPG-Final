@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "Item.h"
+#include "Monster.h"
 #include "Character.h"
 using namespace std;
 
@@ -112,19 +113,17 @@ void Character::remove_from_inventory(int index)
     inventory.erase(inventory.begin() + index);
 }
 
-void Character::fight() 
+void Character::combat_turn(Monster monster) 
 {
-
-
-    /* TO DO */
-
-    
+    cout << "\n" << get_name() << "'s health: " << get_curr_health() << "/" << get_max_health()
+         << "\nMonster's health: " << monster.get_curr_health() << "/" << monster.get_max_health() << endl;
+    cout << "\nIt is your turn, what will you do?" << endl;
+    cout << "1. Attack\n2. Flee the Dungeon\n3. Inventory" << endl;
 }
 
 void Character::display_stats()
 {
-    cout << "\nName: " << get_name() << endl;
-    cout << "Level: " << get_level() << endl;
+    cout << "\nLevel: " << get_level() << endl;
     cout << "Health: " << get_curr_health() << "/" << get_max_health() << endl;
     cout << "Attack Power: " << get_attack() << endl;
     cout << "Experience Points: " << get_curr_xp() << "/" << get_max_xp() << endl;
@@ -188,4 +187,41 @@ int Character::get_dungeons_explored()
 void Character::set_dungeons_explored(int new_dungeons)
 {
     dungeons_explored = new_dungeons;
+}
+
+void Character::display_final_stats()
+{
+    cout << "Final Level: " << get_level() << endl;
+    cout << "Rooms Explored: " << get_rooms_explored() << endl;
+    cout << "Dungeons Explored: " << get_dungeons_explored() << endl;
+    cout << "Total Damage Dealt: " << get_damage_dealt() << endl;
+    cout << "Monsters Defeated: " << get_monsters_defeated() << endl;
+    cout << "Gold Earned: " << get_gold() << endl;
+}
+
+void Character::use_item(Item item, int index)
+{
+    if (item.get_type().compare("Weapon Upgrade") == 0)
+    {
+        set_attack(get_attack() + 2);
+        cout << "\nYour attack power has been increased!" << endl;
+    }
+    else if (item.get_type().compare("Heal") == 0)
+    {
+        if (get_curr_health() + 10 > get_max_health())
+        {
+            set_curr_health(get_max_health());
+        }
+        else
+        {
+            set_curr_health(get_curr_health() + 10);
+        }
+        cout << "\nYou have been healed!" << endl;
+    }
+    else if (item.get_type().compare("Health Upgrade") == 0)
+    {
+        set_max_health(get_max_health() + 2);
+        cout << "\nYour maximum health has been increased!" << endl;
+    }
+    remove_from_inventory(index);
 }

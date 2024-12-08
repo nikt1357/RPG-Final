@@ -65,10 +65,10 @@ int main()
                         {
                             cout << "\nYour inventory is currently empty!" << endl;
                         }
-                        cout << "f. Finish" << endl;
+                        cout << "e. Exit" << endl;
                         cin >> in;
 
-                        if (in.compare("f") == 0)
+                        if (in.compare("e") == 0)
                         {
                             cont_3 = false;
                         }
@@ -88,29 +88,7 @@ int main()
 
                                     if (in.compare("1") == 0)
                                     {
-                                        if (i.get_type().compare("Weapon Upgrade") == 0)
-                                        {
-                                            player.set_attack(player.get_attack() + 2);
-                                            cout << "\nYour attack power has been increased!" << endl;
-                                        }
-                                        else if (i.get_type().compare("Heal") == 0)
-                                        {
-                                            if (player.get_curr_health() + 10 > player.get_max_health())
-                                            {
-                                                player.set_curr_health(player.get_max_health());
-                                            }
-                                            else
-                                            {
-                                                player.set_curr_health(player.get_curr_health() + 10);
-                                            }
-                                            cout << "\nYou have been healed!" << endl;
-                                        }
-                                        else if (i.get_type().compare("Health Upgrade") == 0)
-                                        {
-                                            player.set_max_health(player.get_max_health() + 2);
-                                            cout << "\nYour maximum health has been increased!" << endl;
-                                        }
-                                        player.remove_from_inventory(index);
+                                        player.use_item(i, index);
                                         cont_4 = false;
                                     }
                                     else if (in.compare("2") == 0)
@@ -150,7 +128,14 @@ int main()
         else if (in.compare("3") == 0)
         {
             Dungeon dungeon = Dungeon();
-            cout << "\nYou are now entering a Dungeon, there are " << dungeon.get_rooms() << " rooms before you reach the end..." << endl;
+            if (dungeon.get_rooms() == 1)
+            {
+                cout << "\nYou are now entering a Dungeon, there is " << dungeon.get_rooms() << " room before you reach the end..." << endl;
+            }
+            else
+            {
+                cout << "\nYou are now entering a Dungeon, there are " << dungeon.get_rooms() << " rooms before you reach the end..." << endl;
+            }
             bool cont_2 = true;
             while (cont_2)
             {
@@ -159,19 +144,21 @@ int main()
                     int encounter = 0 + rand() % (0 + 100 + 1);
                     if (encounter <= 30)
                     {
-                        /* Empty Room Lucky Lucky */
+                        cout << "\nThis room appears to be empty..." << endl;
                     }
                     else
                     {
-                        /* Monster Encounter Boooo */
+                        cout << "\nBoo! A Monster!" << endl;
+                        Monster monster = dungeon.generate_monster(player.get_level());
                         /* Increase damage dealt stat in Fight function */
                         /* Battle stats or Game Over */
                         /* Increase Monsters deafeated if defeated */
                     }
                     player.set_rooms_explored(player.get_rooms_explored() + 1);
+                    cout << "\nYou proceed to the next room..." << endl;
                 }
                 cout << "\nYou have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
-                cout << "\nInside you find: " << endl;
+                cout << "Inside you find: " << endl;
                 
                 /* Generate a random item */
                 /* Add to inventory or leave it */
@@ -192,5 +179,6 @@ int main()
     }
 
     cout << "\nFarewell traveler..." << endl;
+    player.display_final_stats();
 
 }
