@@ -150,9 +150,36 @@ int main()
         else if (in.compare("3") == 0)
         {
             Dungeon dungeon = Dungeon();
-            /* TO DO: ACTUAL DUNGEON CRAWL */
-            cout << "\nNumber of rooms: " << dungeon.get_rooms() << endl;
-            /* TO DO: STATS AFTER DUNGEON (GOLD EARNED, MONSTERS KILLED, ETC.) */
+            cout << "\nYou are now entering a Dungeon, there are " << dungeon.get_rooms() << " rooms before you reach the end..." << endl;
+            bool cont_2 = true;
+            while (cont_2)
+            {
+                for (int room = 1; room <= dungeon.get_rooms(); room++)
+                {
+                    int encounter = 0 + rand() % (0 + 100 + 1);
+                    if (encounter <= 30)
+                    {
+                        /* Empty Room Lucky Lucky */
+                    }
+                    else
+                    {
+                        /* Monster Encounter Boooo */
+                        /* Increase damage dealt stat in Fight function */
+                        /* Battle stats or Game Over */
+                        /* Increase Monsters deafeated if defeated */
+                    }
+                    player.set_rooms_explored(player.get_rooms_explored() + 1);
+                }
+                cout << "\nYou have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
+                cout << "\nInside you find: " << endl;
+                
+                /* Generate a random item */
+                /* Add to inventory or leave it */
+
+                player.set_dungeons_explored(player.get_dungeons_explored() + 1);
+                cont_2 = false;
+            }
+            /* TO DO: STATS AFTER DUNGEON (GOLD EARNED, MONSTERS KILLED, HEALTH REMAINING, ETC.) */
         }
         else if (in.compare("4") == 0)
         {

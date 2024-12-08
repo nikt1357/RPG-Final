@@ -8,15 +8,23 @@ using namespace std;
 Character::Character(string char_name) 
 {
     name = char_name;
-    level = 1;
-    max_health = 15;
-    curr_health = 15;
-    attack = 5;
-    max_xp = 20;
+    level = 3;
+    max_health = 25;
+    curr_health = 25;
+    attack = 7;
+    max_xp = 30;
     curr_xp = 0;
     gold = 0;
-    /* inventory = vector<Item>(5); */
+
+    rooms_explored = 0;
+    damage_dealt = 0;
+    monsters_defeated = 0;
+    dungeons_explored = 0;
+
+    /* TEMP */
     inventory.push_back(Item("Scrap Metal", "Weapon Upgrade", 10));
+
+
 }
 
 string Character::get_name()
@@ -140,4 +148,44 @@ int Character::get_gold()
 void Character::set_gold(int new_gold)
 {
     gold = new_gold;
+}
+
+int Character::get_rooms_explored()
+{
+    return rooms_explored;
+}
+
+void Character::set_rooms_explored(int new_rooms)
+{
+    rooms_explored = new_rooms;
+}
+
+int Character::get_damage_dealt()
+{
+    return damage_dealt;
+}
+
+void Character::set_damage_dealt(int new_damage)
+{
+    damage_dealt = new_damage;
+}
+
+int Character::get_monsters_defeated()
+{
+    return monsters_defeated;
+}
+
+void Character::set_monsters_defeated(int new_monsters)
+{
+    monsters_defeated = new_monsters;
+}
+
+int Character::get_dungeons_explored()
+{
+    return dungeons_explored;
+}
+
+void Character::set_dungeons_explored(int new_dungeons)
+{
+    dungeons_explored = new_dungeons;
 }

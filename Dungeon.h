@@ -23,28 +23,16 @@ class Dungeon
         int get_rooms();
 
         /**
-         * Getter function for a Dungeon's possible monsters
-         * @return vector of possible monsters
-         */
-        vector<Monster> get_possible_monsters();
-
-        /**
-         * Getter function for a Dungeon's possible items
-         * @return vector of possible items
-         */
-        vector<Item> get_possible_items();
-
-        /**
          * Function that generates a random Monster from a given vector
          * @return a random Monster
          */
-        Monster generate_monster(vector<Monster> monsters);
+        Monster generate_monster(int player_level);
 
         /**
          * Function that generates a random Item from a given vector
          * @return a random Item
          */
-        Item generate_item(vector<Item> items);
+        Item generate_treasure();
 
         /*
         * Function that generates a random number of rooms for a Dungeon
@@ -53,8 +41,6 @@ class Dungeon
         int generate_num_rooms();
     private:
         int rooms;
-        vector<Monster> possible_monsters;
-        vector<Item> possible_items;
 };
 
 #endif

@@ -5,16 +5,17 @@ using namespace std;
 
 Monster::Monster(int level)
 {
+    max_health = (level * 10);
+    curr_health = max_health;
+    attack = (level + 3);
 
+    int min_xp = (level * 4);
+    int max_xp = (level * 8);
+    xp_reward = min_xp + rand() % (max_xp - min_xp + 1);
 
-    /* TO DO */
-
-
-}
-
-string Monster::get_type()
-{
-    return type;
+    int min_gold = (level * 6);
+    int max_gold = (level * 10);
+    gold_reward = min_gold + rand() % (max_gold - min_gold + 1);
 }
 
 int Monster::get_max_health()
@@ -37,14 +38,9 @@ int Monster::get_xp_reward()
     return xp_reward;
 }
 
-string Monster::generate_item_dropped()
+int Monster::get_gold_reward()
 {
-
-
-    /* TO DO */
-    return "To do";
-
-
+    return gold_reward;
 }
 
 void Monster::fight()

@@ -16,12 +16,6 @@ class Monster
         Monster(int level);
 
         /**
-         * Getter function for a Monster's type
-         * @return the type
-         */
-        string get_type();
-
-        /**
          * Getter function for a Monster's maximum health
          * @return the max health
          */
@@ -46,22 +40,21 @@ class Monster
         int get_xp_reward();
 
         /**
-         * Function to generate a random item from a Monster's list of possible drops
-         * @return a random item
+         * Getter function for a Monster's gold reward
+         * @return gold reward
          */
-        string generate_item_dropped();
+        int get_gold_reward();
 
         /**
          * Function that handles fighting the character
          */
         void fight();
     private:
-        string type;
         int max_health;
         int curr_health;
         int attack;
         int xp_reward;
-        vector<string> rewards_possible;
+        int gold_reward;
 };
 
 #endif

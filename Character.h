@@ -132,6 +132,50 @@ class Character
          * Setter function for a Character's gold
          */
         void set_gold(int new_gold);
+
+        /**
+         * Getter function for the number of rooms a Character has explored
+         * @return number of rooms
+         */
+        int get_rooms_explored();
+
+        /**
+         * Setter function for the number of rooms a Character has explored
+         */
+        void set_rooms_explored(int new_rooms);
+
+        /**
+         * Getter function for the total amount of damage a Character has dealt
+         * @return total damage dealt
+         */
+        int get_damage_dealt();
+
+        /**
+         * Setter function for the total amount of damage a Character has dealt
+         */
+        void set_damage_dealt(int new_damage);
+
+        /**
+         * Getter function for the number of Monsters a Character has defeated
+         * @return number of Monsters defeated
+         */
+        int get_monsters_defeated();
+
+        /**
+         * Setter function for the number of Monsters a Character has defeated
+         */
+        void set_monsters_defeated(int new_monsters);
+
+        /**
+         * Getter function for the number of Dungeons a Character has explored
+         * @return number of Dungeons explored
+         */
+        int get_dungeons_explored();
+
+        /**
+         * Setter function for the number of Dungeons a Character has explored
+         */
+        void set_dungeons_explored(int new_dungeons);
     private:
         string name;
         int level;
@@ -142,6 +186,11 @@ class Character
         int curr_xp;
         vector<Item> inventory;
         int gold;
+
+        int rooms_explored;
+        int damage_dealt;
+        int monsters_defeated;
+        int dungeons_explored;
 };
 
 #endif

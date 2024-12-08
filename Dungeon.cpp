@@ -15,27 +15,16 @@ int Dungeon::get_rooms()
     return rooms;
 }
 
-vector<Monster> Dungeon::get_possible_monsters() 
+Monster Dungeon::generate_monster(int player_level)
 {
-    return possible_monsters;
-}
-
-vector<Item> Dungeon::get_possible_items()
-{
-    return possible_items;
-}
-
-Monster Dungeon::generate_monster(vector<Monster> monsters)
-{
-
-
-    /* TO DO*/
-    return Monster(1);
+    int min_level = (player_level - 2);
+    int max_level = (player_level + 2);
+    int monster_level = min_level + rand() % (min_level + max_level + 1);
     
-
+    return Monster(monster_level);
 }
 
-Item Dungeon::generate_item(vector<Item> items)
+Item Dungeon::generate_treasure()
 {
 
 
