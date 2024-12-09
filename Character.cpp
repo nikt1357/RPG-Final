@@ -183,6 +183,7 @@ void Character::set_dungeons_explored(int new_dungeons)
 
 void Character::display_final_stats()
 {
+    system("Color 06");
     cout << "Your Final Stats: " << endl;
     Sleep(500);
     cout << "Final Level: " << get_level() << endl;
