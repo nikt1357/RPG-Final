@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    /* Intro, entering in your name and creating your Character */
     cout << "Welcome traveler, what is your name?" << endl;
     string name;
     cin >> name;
@@ -19,6 +20,7 @@ int main()
     cout << "1. Yes\n2. No" << endl;
     cin >> in;
 
+    /* Making sure you entered the name you want */
     while (in.compare("1") != 0)
     {
         cout << "\nWhat is your name traveler?" << endl;
@@ -34,19 +36,23 @@ int main()
     Character player = Character(name);
     bool cont = true;
 
+    /* Main Menu handling while loop, keep going until player chooses to quit the game */
     while (cont)
     {
         cout << "\nWhat will you do?" << endl;
         cout << "1. View your stats\n2. View your inventory\n3. Enter a dungeon\n4. Quit" << endl;
         cin >> in;
 
+        /* View stats */
         if (in.compare("1") == 0)
         {
             system("cls");
             player.display_stats();
         }
+        /* Handles inventory management */
         else if (in.compare("2") == 0)
         {          
+            /* Inventory menu, keep looping until player chooses to return to the main menu or no items in inventory */
             bool cont_2 = true;
             while (cont_2) {
                 system("cls");
@@ -63,6 +69,7 @@ int main()
                     break;
                 }
                 
+                /* Selecting an item */
                 if (in.compare("1") == 0)
                 {
                     bool cont_3 = true;
@@ -92,6 +99,7 @@ int main()
                         }
                         else 
                         { 
+                            /* Item has been selected, what will you do with it? */
                             int index = stoi(in) - 1;
                             if (index < player.get_inventory().size())
                             {
@@ -105,11 +113,13 @@ int main()
                                     cout << "1. Use\n2. Sell\n3. Back to Inventory" << endl;
                                     cin >> in;
 
+                                    /* Use the item */
                                     if (in.compare("1") == 0)
                                     {
                                         player.use_item(i, index);
                                         cont_4 = false;
                                     }
+                                    /* Sell the item */
                                     else if (in.compare("2") == 0)
                                     {
                                         player.set_gold(player.get_gold() + i.get_cost());
@@ -117,35 +127,47 @@ int main()
                                         player.remove_from_inventory(index);
                                         cont_4 = false;
                                     }
+                                    /* Back to the main inventory menu */
                                     else if (in.compare("3") == 0)
                                     {
                                         cont_4 = false;
                                     }
+                                    /* Handles invalid menu choices */
                                     else
                                     {
+                                        Sleep(500);
                                         cout << "\nI didn't quite catch that?" << endl;
+                                        Sleep(1500);
                                     }
                                 }
                             }
                             else
                             {
+                                Sleep(500);
                                 cout << "\nPlease choose a valid item..." << endl;
+                                Sleep(1500);
                             }
                         }
                     }
                 }
+                /* Return to main menu */
                 else if (in.compare("2") == 0)
                 {
                     cont_2 = false;
                 }
+                /* Handles invalid menu choices */
                 else
                 {
+                    Sleep(500);
                     cout << "\nI didn't quite catch that?" << endl;
+                    Sleep(1500);
                 }
             }
         }
+        /* Handles the dungeon crawl */
         else if (in.compare("3") == 0)
         {
+            /* Beginning of dungeon crawl, tells player how many rooms are in a randomly generated dungeon */
             system("cls");
             Sleep(1000);
             Dungeon dungeon = Dungeon();
@@ -159,12 +181,16 @@ int main()
             }
             Sleep(2500);
             bool cont_2 = true;
+
+            /* While loop in charge of keeping track of if a player flees the dungeon */
             while (cont_2)
             {
+                /* For each room in the dungeon randomly generate an encounter */
                 for (int room = 1; room <= dungeon.get_rooms(); room++)
                 {
                     bool combat = true;
                     int encounter = 0 + rand() % (0 + 100 + 1);
+                    /* Empty room */
                     if (encounter <= 30)
                     {
                         Sleep(1000);
@@ -172,6 +198,7 @@ int main()
                         cout << "This room appears to be empty..." << endl;
                         Sleep(2000);
                     }
+                    /* Monster encounter, generate a randomly leveled monster and begin combat */
                     else
                     {
                         Sleep(1000);
@@ -180,8 +207,10 @@ int main()
                         Sleep(2000);
                         Monster monster = dungeon.generate_monster(player.get_level());
 
+                        /* Continue combat until player flees or one of the combatants is dead */
                         while ((monster.get_curr_health() > 0 and player.get_curr_health() > 0) and combat)
                         {
+                            /* Print player and monster health */
                             Sleep(1000);
                             cout << "\n" << player.get_name() << "'s health: " << player.get_curr_health() << "/" << player.get_max_health()
                                 << "\nMonster's health: " << monster.get_curr_health() << "/" << monster.get_max_health() << endl;
@@ -189,12 +218,14 @@ int main()
                             /* Player's Turn */
                             bool cont_3 = true;
                             string in;
+                            /* Player's turn menu */
                             while (cont_3)
                             {
                                 Sleep(1000);
                                 cout << "\nIt is your turn, what will you do?" << endl;
                                 cout << "1. Attack\n2. Flee" << endl;
                                 cin >> in;
+                                /* Player attacks monster */
                                 if (in.compare("1") == 0)
                                 {
                                     Sleep(1000);
@@ -204,11 +235,13 @@ int main()
                                     cont_3 = false;
                                     Sleep(1000);
                                 }
+                                /* Player flees the dungeon */
                                 else if (in.compare("2") == 0)
                                 {
                                     cont_3 = false;
                                     combat = false;
                                 }
+                                /* Handles invalid menu choices */
                                 else
                                 {
                                     Sleep(500);
@@ -217,7 +250,7 @@ int main()
                                 }
                             }
 
-                            /* Monster's Turn */
+                            /* Monster's Turn, always attacks */
                             if (combat and monster.get_curr_health() > 0)
                             {
                                 Sleep(1000);
@@ -227,8 +260,10 @@ int main()
                             }
                         }
 
+                        /* Combat has ended, someone is dead */
                         if (combat)
                         {
+                            /* Player survived, get gold and xp from defeated monster */
                             if (player.get_curr_health() > 0)
                             {
                                 system("cls");
@@ -242,6 +277,7 @@ int main()
                                 cout << "You gained " << xp << " xp!" << endl;
                                 player.set_gold(player.get_gold() + gold);
 
+                                /* Check to see if player leveled up */
                                 if (player.get_curr_xp() + xp >= player.get_max_xp())
                                 {
                                     int new_xp = (player.get_curr_xp() + xp) - player.get_max_xp();
@@ -261,6 +297,7 @@ int main()
                                 Sleep(2000);
                                 player.set_monsters_defeated(player.get_monsters_defeated() + 1);
                             }
+                            /* Player has died, game over man */
                             else if (monster.get_curr_health() > 0)
                             {
                                 system("cls");
@@ -272,14 +309,17 @@ int main()
                                 return 0;
                             }
                         }
+                        /* Player fled the dungeon, coward */
                         else
                         {
-                            cout << "You have fleed the Dungeon, abandoning any potential treasure..." << endl;
+                            cout << "You have fled the Dungeon, abandoning any potential treasure..." << endl;
                             cont_2 = false;
                             Sleep(2000);
                             break;
                         }
                     }
+
+                    /* Room has been explored, keep on movin */
                     player.set_rooms_explored(player.get_rooms_explored() + 1);
                     if (combat)
                     {
@@ -293,6 +333,8 @@ int main()
                         break;
                     }
                 }
+
+                /* End of the dungeon has been reached, treasure time */
                 if (cont_2)
                 {
                     system("cls");
@@ -305,12 +347,15 @@ int main()
                     cout << "1. Take it\n2. Leave it" << endl;
                     cin >> in;
 
+                    /* You can't leave the dungeon until the treasure is dealt with */
                     while (cont_3)
                     {
+                        /* Take the treasure */
                         if (in.compare("1") == 0)
                         {
                             Sleep(500);
                             int try_to_take = player.add_to_inventory(treasure);
+                            /* Added to inventory no problem */
                             if (try_to_take == 0)
                             {
                                 cout << "\nThe treasure has been added to your inventory!" << endl;
@@ -319,6 +364,7 @@ int main()
                                 cout << "\nYou now exit the Dungeon..." << endl;
                                 Sleep(1500);
                             }
+                            /* Inventory is full, something has to go */
                             else
                             {
                                 bool cont_4 = true;
@@ -354,6 +400,7 @@ int main()
                                 }
                             }
                         }
+                        /* Leave the treasure */
                         else if (in.compare("2") == 0)
                         {
                             Sleep(500);
@@ -361,6 +408,7 @@ int main()
                             Sleep(1500);
                             cont_3 = false;
                         }
+                        /* Handles invalid menu choice */
                         else
                         {
                             Sleep(500);
@@ -374,10 +422,12 @@ int main()
                 }
             }
         }
+        /* Quit the game, exit the loop */
         else if (in.compare("4") == 0)
         {
             cont = false;
         }
+        /* Handles invalid menu choice */
         else
         {
             Sleep(500);
