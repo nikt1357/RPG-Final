@@ -48,9 +48,3 @@ int Monster::get_gold_reward()
 {
     return gold_reward;
 }
-
-void Monster::combat_turn(Character player)
-{
-    player.set_curr_health(player.get_curr_health() - get_attack());
-    cout << "\nThe Monster attacks you for " << get_attack() << " damage!" << endl;
-}

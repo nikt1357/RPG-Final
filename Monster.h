@@ -54,11 +54,6 @@ class Monster
          * @return gold reward
          */
         int get_gold_reward();
-
-        /**
-         * Function that handles fighting the character
-         */
-        void combat_turn(Character player);
     private:
         int max_health;
         int curr_health;

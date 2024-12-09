@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <windows.h>
 #include "Character.h"
 #include "Dungeon.h"
 #include "Item.h"
@@ -12,6 +13,7 @@ int main()
     cout << "Welcome traveler, what is your name?" << endl;
     string name;
     cin >> name;
+    Sleep(1000);
     cout << "\nYour name is... " << name << " is this correct?" << endl;
     string in;
     cout << "1. Yes\n2. No" << endl;
@@ -21,52 +23,68 @@ int main()
     {
         cout << "\nWhat is your name traveler?" << endl;
         cin >> name;
+        Sleep(1000);
         cout << "\nYour name is... " << name << " is this correct?" << endl;
         cout << "1. Yes\n2. No" << endl;
         cin >> in;
     }
  
-    cout << "\n" << name << ", your journey begins now." << endl;
+    system("cls");
+    cout << name << ", your journey begins now." << endl;
     Character player = Character(name);
     bool cont = true;
 
     while (cont)
     {
-        cout << "\n" << player.get_name() << ", what will you do?" << endl;
+        cout << "\nWhat will you do?" << endl;
         cout << "1. View your stats\n2. View your inventory\n3. Enter a dungeon\n4. Quit" << endl;
         cin >> in;
 
         if (in.compare("1") == 0)
         {
+            system("cls");
             player.display_stats();
         }
         else if (in.compare("2") == 0)
-        {
+        {          
             bool cont_2 = true;
             while (cont_2) {
-                cout << "\nInventory:" << endl;
-                player.display_inventory();
-                cout << "\n1. Select an Item\n2. Return to Menu" << endl;
-                cin >> in;
+                system("cls");
+                if (player.get_inventory().size() > 0)
+                {
+                    cout << "Inventory:" << endl;
+                    player.display_inventory();
+                    cout << "\n1. Select an Item\n2. Return to Menu" << endl;
+                    cin >> in;
+                }
+                else
+                {
+                    cout << "Your inventory is currently empty!" << endl;
+                    break;
+                }
+                
                 if (in.compare("1") == 0)
                 {
                     bool cont_3 = true;
                     while (cont_3) {
+                        system("cls");
                         int count = 0;
                         if (player.get_inventory().size() > 0) {
                             for (Item i : player.get_inventory())
                             {
-                                cout << "\nInventory:" << endl;
+                                cout << "Select an Item:" << endl;
                                 cout << (count + 1) << ". " << i.get_name() << endl;
                                 count++;
                             }
+                            cout << "e. Exit" << endl;
+                            cin >> in;
                         }
                         else
                         {
-                            cout << "\nYour inventory is currently empty!" << endl;
+                            cout << "Your inventory is currently empty!" << endl;
+                            cont_3 = false;
+                            break;
                         }
-                        cout << "e. Exit" << endl;
-                        cin >> in;
 
                         if (in.compare("e") == 0)
                         {
@@ -79,8 +97,9 @@ int main()
                             {
                                 bool cont_4 = true;
                                 while (cont_4) {
+                                    system("cls");
                                     Item i = player.get_inventory().at(index);
-                                    cout << "\nName: " << i.get_name() << endl;
+                                    cout << "Name: " << i.get_name() << endl;
                                     cout << "Type: " << i.get_type() << endl;
                                     cout << "Cost: " << i.get_cost() << endl;
                                     cout << "1. Use\n2. Sell\n3. Back to Inventory" << endl;
@@ -127,15 +146,17 @@ int main()
         }
         else if (in.compare("3") == 0)
         {
+            system("cls");
             Dungeon dungeon = Dungeon();
             if (dungeon.get_rooms() == 1)
             {
-                cout << "\nYou are now entering a Dungeon, there is " << dungeon.get_rooms() << " room before you reach the end..." << endl;
+                cout << "You are now entering a Dungeon, there is " << dungeon.get_rooms() << " room before you reach the end..." << endl;
             }
             else
             {
-                cout << "\nYou are now entering a Dungeon, there are " << dungeon.get_rooms() << " rooms before you reach the end..." << endl;
+                cout << "You are now entering a Dungeon, there are " << dungeon.get_rooms() << " rooms before you reach the end..." << endl;
             }
+            Sleep(1000);
             bool cont_2 = true;
             while (cont_2)
             {
@@ -146,6 +167,7 @@ int main()
                     if (encounter <= 30)
                     {
                         cout << "\nThis room appears to be empty..." << endl;
+                        Sleep(500);
                     }
                     else
                     {
@@ -217,6 +239,10 @@ int main()
                                     player.set_curr_health(player.get_curr_health() + 2);
                                     cout << "\nLevel Up! Your stats have been increased!" << endl;
                                 }
+                                else
+                                {
+                                    player.set_curr_xp(player.get_curr_xp() + xp);
+                                }
 
                                 player.set_monsters_defeated(player.get_monsters_defeated() + 1);
                             }
@@ -237,7 +263,9 @@ int main()
                     player.set_rooms_explored(player.get_rooms_explored() + 1);
                     if (combat)
                     {
-                        cout << "\nYou proceed to the next room..." << endl;
+                        system("cls");
+                        cout << "You proceed to the next room..." << endl;
+                        Sleep(1000);
                     }
                     else
                     {
@@ -247,7 +275,8 @@ int main()
                 }
                 if (cont_2)
                 {
-                    cout << "\nYou have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
+                    system("cls");
+                    cout << "You have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
                     cout << "Inside you find: " << endl;
 
                     /* Generate a random item */
@@ -269,7 +298,10 @@ int main()
         }
     }
 
-    cout << "\nFarewell traveler..." << endl;
+    system("cls");
     player.display_final_stats();
+    Sleep(500);
+    cout << "\n\nFarewell traveler..." << endl;
+    Sleep(2000);
 
 }

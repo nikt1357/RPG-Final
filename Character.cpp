@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <windows.h>
 #include "Item.h"
 #include "Monster.h"
 #include "Character.h"
@@ -114,47 +115,16 @@ void Character::remove_from_inventory(int index)
     inventory.erase(inventory.begin() + index);
 }
 
-bool Character::combat_turn(Monster monster) 
-{
-    bool cont = true;
-    string in;
-    while (cont)
-    {
-        cout << "\nIt is your turn, what will you do?" << endl;
-        cout << "1. Attack\n2. Flee\n3. Inventory" << endl;
-        cin >> in;
-        if (in.compare("1") == 0)
-        {
-            monster.set_curr_health(monster.get_curr_health() - get_attack());
-            cout << "\nYou attack the Monster for " << get_attack() << " damage!" << endl;
-            set_damage_dealt(get_damage_dealt() + get_attack());
-            cont = false;
-            return true;
-        }
-        else if (in.compare("2") == 0)
-        {
-            cont = false;
-            return false;
-        }
-        else if (in.compare("3") == 0)
-        {
-            cout << "\nInventory stuff" << endl;
-            cont = false;
-            return true;
-        }
-        else
-        {
-            cout << "\nI didn't quite catch that?" << endl;
-        }
-    }
-}
-
 void Character::display_stats()
 {
-    cout << "\nLevel: " << get_level() << endl;
+    cout << "Level: " << get_level() << endl;
+    Sleep(500);
     cout << "Health: " << get_curr_health() << "/" << get_max_health() << endl;
+    Sleep(500);
     cout << "Attack Power: " << get_attack() << endl;
+    Sleep(500);
     cout << "Experience Points: " << get_curr_xp() << "/" << get_max_xp() << endl;
+    Sleep(500);
     cout << "Current Gold: " << get_gold() << endl;
 }
 
@@ -162,7 +132,6 @@ void Character::display_inventory()
 {
     for (Item i : inventory)
     {
-
         cout << i.get_name() << endl;
     }
 }
@@ -219,12 +188,18 @@ void Character::set_dungeons_explored(int new_dungeons)
 
 void Character::display_final_stats()
 {
-    cout << "Your Final Stats: " << endl;
+    cout << "\nYour Final Stats: " << endl;
+    Sleep(500);
     cout << "Final Level: " << get_level() << endl;
+    Sleep(500);
     cout << "Rooms Explored: " << get_rooms_explored() << endl;
+    Sleep(500);
     cout << "Dungeons Explored: " << get_dungeons_explored() << endl;
+    Sleep(500);
     cout << "Total Damage Dealt: " << get_damage_dealt() << endl;
+    Sleep(500);
     cout << "Monsters Defeated: " << get_monsters_defeated() << endl;
+    Sleep(500);
     cout << "Gold Earned: " << get_gold() << endl;
 }
 

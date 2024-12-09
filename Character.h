@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <windows.h>
 #include "Item.h"
 class Monster;
 using namespace std;
@@ -13,8 +14,6 @@ using namespace std;
 class Character
 {
     public:
-        friend class Monster;
-
         /**
          * Constructs a Character with default stats
          */
@@ -109,13 +108,6 @@ class Character
          * Function that removes an Item from a Character's inventory given the index of the Item
          */
         void remove_from_inventory(int index);
-
-        /**
-         * Function that handles fighting an enemy
-         * @return true if combat continues
-         * @return false if flee
-         */
-        bool combat_turn(Monster monster);
 
         /**
         * Function that prints out a Character's stats
