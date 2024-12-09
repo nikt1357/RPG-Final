@@ -205,6 +205,7 @@ void Character::use_item(Item item, int index)
     {
         set_attack(get_attack() + 2);
         cout << "\nYour attack power has been increased!" << endl;
+        Sleep(1500);
     }
     else if (item.get_type().compare("Heal") == 0)
     {
@@ -217,11 +218,13 @@ void Character::use_item(Item item, int index)
             set_curr_health(get_curr_health() + 10);
         }
         cout << "\nYou have been healed!" << endl;
+        Sleep(1500);
     }
     else if (item.get_type().compare("Health Upgrade") == 0)
     {
         set_max_health(get_max_health() + 2);
         cout << "\nYour maximum health has been increased!" << endl;
+        Sleep(1500);
     }
     remove_from_inventory(index);
 }

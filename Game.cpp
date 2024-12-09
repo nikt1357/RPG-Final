@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <windows.h>
+#include <cstdlib>
+#include <ctime>
 #include "Character.h"
 #include "Dungeon.h"
 #include "Item.h"
@@ -10,6 +12,8 @@ using namespace std;
 
 int main()
 {
+    srand(time(0));
+    system("Color 07");
     /* Intro, entering in your name and creating your Character */
     cout << "Welcome traveler, what is your name?" << endl;
     string name;
@@ -31,6 +35,7 @@ int main()
         cin >> in;
     }
  
+    Sleep(1000);
     system("cls");
     cout << name << ", your journey begins now." << endl;
     Character player = Character(name);
@@ -286,6 +291,7 @@ int main()
                                     player.set_curr_xp(new_xp);
                                     player.set_max_health(player.get_max_health() + 2);
                                     player.set_curr_health(player.get_curr_health() + 2);
+                                    player.set_attack(player.get_attack() + 2);
                                     Sleep(750);
                                     cout << "\nLevel Up! Your stats have been increased!" << endl;
                                 }

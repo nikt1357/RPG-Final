@@ -1,11 +1,14 @@
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Character.h"
 #include "Monster.h"
 using namespace std;
 
 Monster::Monster(int level)
 {
+    srand(time(0));
     max_health = (level * 2);
     curr_health = max_health;
     attack = (level + 2);

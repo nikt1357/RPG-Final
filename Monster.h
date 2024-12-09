@@ -2,6 +2,8 @@
 #define MONSTER_H
 
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "Character.h"
 class Character;
 using namespace std;
