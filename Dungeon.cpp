@@ -17,8 +17,8 @@ int Dungeon::get_rooms()
 
 Monster Dungeon::generate_monster(int player_level)
 {
-    int min_level = (player_level - 2);
-    int max_level = (player_level + 2);
+    int min_level = (player_level - 1);
+    int max_level = (player_level + 1);
     int monster_level = min_level + rand() % (min_level + max_level + 1);
     
     return Monster(monster_level);

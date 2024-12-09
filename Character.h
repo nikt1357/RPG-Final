@@ -13,6 +13,8 @@ using namespace std;
 class Character
 {
     public:
+        friend class Monster;
+
         /**
          * Constructs a Character with default stats
          */
@@ -110,8 +112,10 @@ class Character
 
         /**
          * Function that handles fighting an enemy
+         * @return true if combat continues
+         * @return false if flee
          */
-        void combat_turn(Monster monster);
+        bool combat_turn(Monster monster);
 
         /**
         * Function that prints out a Character's stats

@@ -6,9 +6,9 @@ using namespace std;
 
 Monster::Monster(int level)
 {
-    max_health = (level * 10);
+    max_health = (level * 2);
     curr_health = max_health;
-    attack = (level + 3);
+    attack = (level + 2);
 
     int min_xp = (level * 4);
     int max_xp = (level * 8);
@@ -29,6 +29,11 @@ int Monster::get_curr_health()
     return curr_health;
 }
 
+void Monster::set_curr_health(int new_health)
+{
+    curr_health = new_health;
+}
+
 int Monster::get_attack()
 {
     return attack;
@@ -46,8 +51,6 @@ int Monster::get_gold_reward()
 
 void Monster::combat_turn(Character player)
 {
-    cout << "\n" << player.get_name() << "'s health: " << player.get_curr_health() << "/" << player.get_max_health()
-        << "\nMonster's health: " << get_curr_health() << "/" << get_max_health() << endl;
     player.set_curr_health(player.get_curr_health() - get_attack());
     cout << "\nThe Monster attacks you for " << get_attack() << " damage!" << endl;
 }

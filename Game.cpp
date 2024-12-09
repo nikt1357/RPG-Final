@@ -141,6 +141,7 @@ int main()
             {
                 for (int room = 1; room <= dungeon.get_rooms(); room++)
                 {
+                    bool combat = true;
                     int encounter = 0 + rand() % (0 + 100 + 1);
                     if (encounter <= 30)
                     {
@@ -148,23 +149,113 @@ int main()
                     }
                     else
                     {
-                        cout << "\nBoo! A Monster!" << endl;
+                        cout << "\nYou encounter a Monster!" << endl;
                         Monster monster = dungeon.generate_monster(player.get_level());
-                        /* Increase damage dealt stat in Fight function */
-                        /* Battle stats or Game Over */
-                        /* Increase Monsters deafeated if defeated */
+
+                        while ((monster.get_curr_health() > 0 and player.get_curr_health() > 0) and combat)
+                        {
+                            cout << "\n" << player.get_name() << "'s health: " << player.get_curr_health() << "/" << player.get_max_health()
+                                << "\nMonster's health: " << monster.get_curr_health() << "/" << monster.get_max_health() << endl;
+                            
+                            /* Player's Turn */
+                            bool cont_3 = true;
+                            string in;
+                            while (cont_3)
+                            {
+                                cout << "\nIt is your turn, what will you do?" << endl;
+                                cout << "1. Attack\n2. Flee\n3. Inventory" << endl;
+                                cin >> in;
+                                if (in.compare("1") == 0)
+                                {
+                                    monster.set_curr_health(monster.get_curr_health() - player.get_attack());
+                                    cout << "\nYou attack the Monster for " << player.get_attack() << " damage!" << endl;
+                                    player.set_damage_dealt(player.get_damage_dealt() + player.get_attack());
+                                    cont_3 = false;
+                                }
+                                else if (in.compare("2") == 0)
+                                {
+                                    cont_3 = false;
+                                    combat = false;
+                                }
+                                else if (in.compare("3") == 0)
+                                {
+                                    cout << "\nInventory stuff" << endl;
+                                    cont_3 = false;                                 
+                                }
+                                else
+                                {
+                                    cout << "\nI didn't quite catch that?" << endl;
+                                }
+                            }
+
+                            /* Monster's Turn */
+                            if (monster.get_curr_health() > 0)
+                            {
+                                player.set_curr_health(player.get_curr_health() - monster.get_attack());
+                                cout << "\nThe Monster attacks you for " << monster.get_attack() << " damage!" << endl;
+                            }
+                        }
+
+                        if (combat)
+                        {
+                            if (player.get_curr_health() > 0)
+                            {
+                                int gold = monster.get_gold_reward();
+                                int xp = monster.get_xp_reward();
+                                cout << "\nYou have defeated the Monster!" << endl;
+                                cout << "You gained " << gold << " gold!" << endl;
+                                cout << "You gained " << xp << " xp!" << endl;
+                                player.set_gold(player.get_gold() + gold);
+
+                                if (player.get_curr_xp() + xp >= player.get_max_xp())
+                                {
+                                    int new_xp = (player.get_curr_xp() + xp) - player.get_max_xp();
+                                    player.set_level(player.get_level() + 1);
+                                    player.set_max_xp(player.get_max_xp() + 5);
+                                    player.set_curr_xp(new_xp);
+                                    player.set_max_health(player.get_max_health() + 2);
+                                    player.set_curr_health(player.get_curr_health() + 2);
+                                    cout << "\nLevel Up! Your stats have been increased!" << endl;
+                                }
+
+                                player.set_monsters_defeated(player.get_monsters_defeated() + 1);
+                            }
+                            else if (monster.get_curr_health() > 0)
+                            {
+                                cout << "\nThe Monster has bested you, you have met your end in the Dungeon..." << endl;
+                                player.display_final_stats();
+                                return 0;
+                            }
+                        }
+                        else
+                        {
+                            cout << "\nYou have fleed the Dungeon, abandoning any potential treasure..." << endl;
+                            cont_2 = false;
+                            break;
+                        }
                     }
                     player.set_rooms_explored(player.get_rooms_explored() + 1);
-                    cout << "\nYou proceed to the next room..." << endl;
+                    if (combat)
+                    {
+                        cout << "\nYou proceed to the next room..." << endl;
+                    }
+                    else
+                    {
+                        cont_2 = false;
+                        break;
+                    }
                 }
-                cout << "\nYou have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
-                cout << "Inside you find: " << endl;
-                
-                /* Generate a random item */
-                /* Add to inventory or leave it */
+                if (cont_2)
+                {
+                    cout << "\nYou have reached the end of the Dungeon, in front of you there is a treasure chest..." << endl;
+                    cout << "Inside you find: " << endl;
 
-                player.set_dungeons_explored(player.get_dungeons_explored() + 1);
-                cont_2 = false;
+                    /* Generate a random item */
+                    /* Add to inventory or leave it */
+
+                    player.set_dungeons_explored(player.get_dungeons_explored() + 1);
+                    cont_2 = false;
+                }
             }
             /* TO DO: STATS AFTER DUNGEON (GOLD EARNED, MONSTERS KILLED, HEALTH REMAINING, ETC.) */
         }

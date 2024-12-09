@@ -12,6 +12,9 @@ using namespace std;
 class Monster
 {
     public:
+        friend class Character;
+
+
         /**
          * Constructs a Monster with random stats
          */
@@ -28,6 +31,11 @@ class Monster
          * @return the current health
          */
         int get_curr_health();
+
+        /**
+         * Setter function for a Monster's current health
+         */
+        void set_curr_health(int new_health);
 
         /**
          * Getter function for a Monster's attack points
