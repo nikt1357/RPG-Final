@@ -23,11 +23,6 @@ Character::Character(string char_name)
     damage_dealt = 0;
     monsters_defeated = 0;
     dungeons_explored = 0;
-
-    /* TEMP */
-    inventory.push_back(Item("Scrap Metal", "Weapon Upgrade", 10));
-
-
 }
 
 string Character::get_name()
@@ -188,7 +183,7 @@ void Character::set_dungeons_explored(int new_dungeons)
 
 void Character::display_final_stats()
 {
-    cout << "\nYour Final Stats: " << endl;
+    cout << "Your Final Stats: " << endl;
     Sleep(500);
     cout << "Final Level: " << get_level() << endl;
     Sleep(500);
